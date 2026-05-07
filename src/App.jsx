@@ -29,6 +29,12 @@ const gallery = [
 
 const routeWords = ["Road", "Gear", "Silence", "Texture", "Autonomy", "Endurance", "Departure"];
 
+const specs = [
+  ["01", "Loaded bike", "Vélo chargé, prêt à quitter le bord de carte."],
+  ["02", "Low light", "Aube, poussière, fin de journée, tension cinéma."],
+  ["03", "Technical detail", "Lunettes, cockpit, textile, sacs, outils."],
+];
+
 export default function App() {
   useEffect(() => {
     const reveals = [...document.querySelectorAll("[data-reveal]")];
@@ -99,6 +105,15 @@ export default function App() {
               <a href="#territoire">Explorer le territoire</a>
               <a href="#photo">Voir les visuels</a>
             </div>
+            <div className="hero-specs" aria-label="Axes créatifs">
+              {specs.map(([num, title, text]) => (
+                <div key={title}>
+                  <span>{num}</span>
+                  <strong>{title}</strong>
+                  <small>{text}</small>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="hero-board" data-reveal>
@@ -125,7 +140,10 @@ export default function App() {
 
         <section className="section territory" id="territoire">
           <div className="section-head" data-reveal>
-            <p className="kicker">01 / Moodboard</p>
+            <div>
+              <p className="kicker">01 / Moodboard</p>
+              <p>Route, silence, équipement, peau, verre, métal. La marque se construit dans les détails qui donnent envie de partir.</p>
+            </div>
             <h2>Un territoire visuel entre route, silence et obsession du détail.</h2>
           </div>
           <div className="mood-grid">
@@ -166,6 +184,11 @@ export default function App() {
             <p>
               Les lunettes deviennent un écran narratif. Les reflets racontent le paysage. Les gros plans créent une tension premium entre sport, produit et imaginaire de route.
             </p>
+            <div className="caption-row">
+              <span>Natural skin</span>
+              <span>Orange glass</span>
+              <span>Black details</span>
+            </div>
           </div>
           <div className="lens-wall">
             {["glassesOrange", "glassesMountain", "rainLens", "blueLens", "productKit"].map((key, index) => (
@@ -193,11 +216,11 @@ export default function App() {
 
         <section className="social">
           <div className="section-head" data-reveal>
-            <p className="kicker">05 / Social media system</p>
+            <div>
+              <p className="kicker">05 / Social media system</p>
+              <p>Chaque post doit fonctionner seul tout en construisant un monde cohérent : immersion, détail produit, route, équipement, pause.</p>
+            </div>
             <h2>Une grille sociale pensée comme un carnet de route premium.</h2>
-            <p>
-              Le feed alterne immersion, détails produit, route, équipement et moments de pause. Chaque post doit fonctionner seul tout en construisant un monde cohérent.
-            </p>
           </div>
           <div className="social-grid">
             {gallery.slice(8).map(([key, alt], index) => (
