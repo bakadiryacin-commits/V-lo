@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 const photos = [
   {
     src: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=900&q=82",
-    alt: "Velo equipe pour une aventure bikepacking",
+    alt: "Velo charge pour une aventure bikepacking",
     className: "photo photo-a",
   },
   {
@@ -19,9 +19,9 @@ const photos = [
 ];
 
 const features = [
-  ["01", "Autonomie", "Preparer l'essentiel, retirer le superflu et rouler avec une vraie marge."],
-  ["02", "Route", "Lire l'itineraire comme une sequence : distance, denivele, lumiere, pause."],
-  ["03", "Materiel", "Sacoches, lunettes, textile, outils et navigation deviennent un systeme clair."],
+  ["01", "Autonomie", "Partir, gerer, reparer, continuer. Le voyage se gagne dans la preparation."],
+  ["02", "Precision", "Chaque objet a une fonction. Rien n'est decoratif, tout sert la route."],
+  ["03", "Texture", "Poussiere, textile, metal, peau, verre, bitume : le detail fait la tension premium."],
 ];
 
 function BikeModel() {
@@ -93,34 +93,34 @@ export default function App() {
       <nav className="nav">
         <a className="brand" href="#accueil"><span>V</span> V-lo</a>
         <div className="nav-links">
-          <a href="#experience">Experience</a>
+          <a href="#territoire">Territoire</a>
           <a href="#equipement">Equipement</a>
-          <a href="#guide">Guide</a>
-          <a href="bikepacking_premium_art_direction_EN.html">Deck</a>
+          <a href="#systeme">Systeme</a>
+          <a href="bikepacking_premium_art_direction_EN.html">Presentation</a>
         </div>
       </nav>
 
       <main>
         <section className="hero" id="accueil">
-          <div className="hero-bg" />
           <div className="hero-copy" data-reveal>
-            <p className="kicker">Bikepacking premium</p>
-            <h1>La route commence ici.</h1>
+            <p className="kicker">Univers de marque / Bikepacking premium</p>
+            <h1>Rouler au-dela de la carte.</h1>
             <p className="lead">
-              V-lo aide les cyclistes a preparer leurs sorties, choisir leur equipement et partir plus loin avec une experience visuelle fluide, moderne et immersive.
+              Une direction artistique construite autour de la route, de l'equipement et du voyage autonome. Un territoire outdoor, editorial, technique et cinematographique.
             </p>
             <div className="actions">
-              <a className="button primary" href="#experience">Explorer</a>
-              <a className="button" href="#equipement">Voir l'equipement</a>
+              <a className="button primary" href="#territoire">Explorer le territoire</a>
+              <a className="button" href="bikepacking_premium_art_direction_EN.html">Voir la presentation</a>
             </div>
           </div>
 
-          <div className="hero-stage" data-reveal>
-            <BikeModel />
-            <div className="glass-card">
-              <span>Sortie preparee</span>
-              <strong>148 km</strong>
-              <small>2 430 m D+ / autonomie 72 h</small>
+          <div className="hero-visual" data-reveal>
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=84" alt="Route de montagne au lever du soleil pour une aventure velo" />
+            <div className="hero-badge">Visual identity system</div>
+            <div className="route-chip">
+              <span>Depart imminent</span>
+              <strong>72 h</strong>
+              <small>autonomie / lumiere basse / route ouverte</small>
             </div>
           </div>
         </section>
@@ -132,12 +132,15 @@ export default function App() {
           </div>
         </section>
 
-        <section className="experience" id="experience">
+        <section className="territory" id="territoire">
           <div className="section-copy" data-reveal>
-            <p className="kicker">Experience</p>
-            <h2>Plus calme, plus premium, plus lisible.</h2>
+            <p className="kicker">01 / Territoire visuel</p>
+            <h2>Un monde faconne par la route, le silence et l'obsession du detail.</h2>
             <p>
-              Les textes sont reduits, l'espace respire mieux, et les animations servent la navigation au lieu de prendre toute la place.
+              L'histoire ne repose pas sur des promesses de performance bruyantes. Elle repose sur la preparation, la precision, l'endurance et la capacite a aller loin avec moins.
+            </p>
+            <p>
+              Chaque visuel doit donner l'impression que le depart est imminent : un velo charge, une carte ouverte, une lumiere basse, un accessoire technique, un corps concentre.
             </p>
           </div>
 
@@ -159,22 +162,27 @@ export default function App() {
             ))}
           </div>
           <div className="equipment-copy" data-reveal>
-            <p className="kicker">Equipement & terrain</p>
-            <h2>Des images qui bougent avec le scroll.</h2>
+            <p className="kicker">02 / Photographie</p>
+            <h2>Macro technique, lumiere chaude, sensation physique.</h2>
             <p>
-              Les visuels flottent, pivotent et se decalent pendant la descente pour donner une sensation de profondeur, proche des sites produit haut de gamme.
+              Les lunettes, les sacs et les details deviennent des surfaces narratives. Les reflets portent le paysage. Les plans serres creent une tension premium entre sport, produit et imaginaire de route.
             </p>
             <a className="text-link" href="bikepacking_premium_art_direction_EN.html">Ouvrir la presentation complete</a>
           </div>
         </section>
 
-        <section className="guide" id="guide">
-          <div data-reveal>
-            <p className="kicker">SEO francais</p>
-            <h2>Une base propre pour Google.</h2>
-            <p>
-              La page principale contient maintenant un H1 clair, des textes en francais, une description SEO, des balises sociales et une structure lisible.
-            </p>
+        <section className="system" id="systeme">
+          <div className="system-grid">
+            <div data-reveal>
+              <p className="kicker">03 / Systeme graphique</p>
+              <h2>Entre ordre radical et desordre fonctionnel.</h2>
+              <p>
+                Le systeme alterne entre flatlays tres organises et accumulation presque excessive d'equipement. Ce contraste donne a V-lo une personnalite forte, technique et memorisable.
+              </p>
+            </div>
+            <div className="bike-panel" data-reveal>
+              <BikeModel />
+            </div>
           </div>
         </section>
       </main>
