@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { assets } from "./assets.js";
 
 const pillars = [
@@ -35,7 +35,16 @@ const specs = [
   ["03", "Technical detail", "Lunettes, cockpit, textile, sacs, outils."],
 ];
 
+const lightboxItems = gallery.map(([key, alt]) => ({
+  key,
+  alt,
+  src: assets[key],
+}));
+
 export default function App() {
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const activeImage = activeImageIndex === null ? null : lightboxItems[activeImageIndex];
+
   useEffect(() => {
     const reveals = [...document.querySelectorAll("[data-reveal]")];
     const driftItems = [...document.querySelectorAll("[data-drift]")];
@@ -71,6 +80,51 @@ export default function App() {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  const showImage = (direction) => {
+    setActiveImageIndex((current) => {
+      if (current === null) return 0;
+      return (current + direction + lightboxItems.length) % lightboxItems.length;
+    });
+  };
+
+  useEffect(() => {
+    if (activeImageIndex === null) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setActiveImageIndex(null);
+      if (event.key === "ArrowRight") showImage(1);
+      if (event.key === "ArrowLeft") showImage(-1);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeImageIndex]);
+
+  const openImage = (key) => {
+    const index = lightboxItems.findIndex((item) => item.key === key);
+    if (index !== -1) setActiveImageIndex(index);
+  };
+
+  const openImageFromKeyboard = (event, key) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    openImage(key);
+  };
+
+  const zoomProps = (key) => ({
+    role: "button",
+    tabIndex: 0,
+    title: "Agrandir l'image",
+    onClick: () => openImage(key),
+    onKeyDown: (event) => openImageFromKeyboard(event, key),
+  });
 
   return (
     <div className="site">
@@ -117,9 +171,9 @@ export default function App() {
           </div>
 
           <div className="hero-board" data-reveal>
-            <img className="board-main" src={assets.map} alt="Carte papier tenue en main" />
-            <img className="board-float board-one" data-drift src={assets.glassesOrange} alt="Macro lunettes vélo orange" />
-            <img className="board-float board-two" data-drift src={assets.cockpit} alt="Cockpit vélo bikepacking" />
+            <img className="board-main zoomable" src={assets.map} alt="Carte papier tenue en main" {...zoomProps("map")} />
+            <img className="board-float board-one zoomable" data-drift src={assets.glassesOrange} alt="Macro lunettes vélo orange" {...zoomProps("glassesOrange")} />
+            <img className="board-float board-two zoomable" data-drift src={assets.cockpit} alt="Cockpit vélo bikepacking" {...zoomProps("cockpit")} />
             <div className="hero-stat">
               <span>Départ imminent</span>
               <strong>72h</strong>
@@ -149,7 +203,7 @@ export default function App() {
           <div className="mood-grid">
             {gallery.slice(0, 8).map(([key, alt], index) => (
               <figure className={`mood mood-${index + 1}`} data-reveal data-drift key={key}>
-                <img src={assets[key]} alt={alt} />
+                <img className="zoomable" src={assets[key]} alt={alt} {...zoomProps(key)} />
               </figure>
             ))}
           </div>
@@ -192,7 +246,7 @@ export default function App() {
           </div>
           <div className="lens-wall">
             {["glassesOrange", "glassesMountain", "rainLens", "blueLens", "productKit"].map((key, index) => (
-              <img className={`lens lens-${index + 1}`} data-reveal data-drift src={assets[key]} alt="Détail produit vélo premium" key={key} />
+              <img className={`lens lens-${index + 1} zoomable`} data-reveal data-drift src={assets[key]} alt="Détail produit vélo premium" key={key} {...zoomProps(key)} />
             ))}
           </div>
         </section>
@@ -209,8 +263,8 @@ export default function App() {
             </p>
           </div>
           <div className="split-visuals">
-            <img data-reveal data-drift src={assets.flatlayDark} alt="Flatlay sombre bikepacking" />
-            <img data-reveal data-drift src={assets.overpacked} alt="Accumulation d'équipement outdoor" />
+            <img className="zoomable" data-reveal data-drift src={assets.flatlayDark} alt="Flatlay sombre bikepacking" {...zoomProps("flatlayDark")} />
+            <img className="zoomable" data-reveal data-drift src={assets.overpacked} alt="Accumulation d'équipement outdoor" {...zoomProps("overpacked")} />
           </div>
         </section>
 
@@ -224,7 +278,7 @@ export default function App() {
           </div>
           <div className="social-grid">
             {gallery.slice(8).map(([key, alt], index) => (
-              <img className={`social-card card-${index + 1}`} data-reveal data-drift src={assets[key]} alt={alt} key={key} />
+              <img className={`social-card card-${index + 1} zoomable`} data-reveal data-drift src={assets[key]} alt={alt} key={key} {...zoomProps(key)} />
             ))}
           </div>
         </section>
@@ -240,6 +294,27 @@ export default function App() {
           </div>
         </section>
       </main>
+
+      {activeImage && (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" onClick={() => setActiveImageIndex(null)}>
+          <button className="lightbox-close" type="button" onClick={() => setActiveImageIndex(null)} aria-label="Fermer l'image">
+            Fermer
+          </button>
+          <button className="lightbox-nav lightbox-prev" type="button" onClick={(event) => { event.stopPropagation(); showImage(-1); }} aria-label="Image précédente">
+            Prev
+          </button>
+          <figure className="lightbox-frame" onClick={(event) => event.stopPropagation()}>
+            <img src={activeImage.src} alt={activeImage.alt} />
+            <figcaption>
+              <span>{String(activeImageIndex + 1).padStart(2, "0")} / {String(lightboxItems.length).padStart(2, "0")}</span>
+              {activeImage.alt}
+            </figcaption>
+          </figure>
+          <button className="lightbox-nav lightbox-next" type="button" onClick={(event) => { event.stopPropagation(); showImage(1); }} aria-label="Image suivante">
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
