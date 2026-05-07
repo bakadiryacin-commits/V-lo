@@ -3,23 +3,666 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>V-lo</title>
-  <meta http-equiv="refresh" content="0; url=./bikepacking_premium_art_direction_EN.html">
-  <link rel="canonical" href="./bikepacking_premium_art_direction_EN.html">
+  <title>V-lo | Bikepacking, aventure et équipement vélo premium</title>
+  <meta name="description" content="V-lo est une expérience bikepacking premium pour préparer ses sorties vélo, choisir son équipement et partir plus loin avec style, autonomie et précision.">
+  <meta name="keywords" content="V-lo, velo, vélo, bikepacking, aventure vélo, equipement velo, sacoches velo, voyage a velo, gravel, cyclisme">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="V-lo">
+  <link rel="canonical" href="/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="V-lo | Bikepacking premium">
+  <meta property="og:description" content="Une direction vélo immersive pour celles et ceux qui préparent la route, l'équipement et l'aventure.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#090807">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "V-lo",
+    "description": "Expérience bikepacking premium, aventure vélo et équipement outdoor.",
+    "inLanguage": "fr-FR",
+    "url": "/"
+  }
+  </script>
   <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap");
+
+    :root {
+      --black: #090807;
+      --carbon: #151514;
+      --paper: #f8f4ea;
+      --cream: #f2e9d8;
+      --orange: #f36a21;
+      --olive: #8b8f3e;
+      --blue: #547083;
+      --ink: #1d2430;
+      --line: rgba(242, 233, 216, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(243, 106, 33, .24), transparent 28%),
+        radial-gradient(circle at 85% 22%, rgba(84, 112, 131, .28), transparent 32%),
+        linear-gradient(180deg, #090807 0%, #151514 46%, #f8f4ea 46%, #f8f4ea 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent, rgba(255,255,255,.08), transparent),
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(243,106,33,.18), transparent 18rem);
+      mix-blend-mode: screen;
+      opacity: .8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      z-index: 20;
+      width: min(1120px, calc(100% - 32px));
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border: 1px solid rgba(242, 233, 216, .18);
+      background: rgba(9, 8, 7, .58);
+      backdrop-filter: blur(22px);
+      border-radius: 999px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.32);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      font-family: Arial, sans-serif;
-      background: #f6f4ef;
-      color: #1f2933;
+      color: #160802;
+      background: var(--orange);
+      box-shadow: 0 0 34px rgba(243,106,33,.55);
     }
-    a { color: #0f766e; }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      font-size: 13px;
+      color: rgba(242,233,216,.78);
+    }
+
+    .nav-links a {
+      padding: 9px 13px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover { background: rgba(242,233,216,.10); color: var(--cream); }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      padding: 116px clamp(22px, 6vw, 82px) 52px;
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      transform: scale(1.04);
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.08) saturate(.9) brightness(.58);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(9,8,7,.92), rgba(9,8,7,.42) 54%, rgba(9,8,7,.72)),
+        linear-gradient(0deg, rgba(9,8,7,.92), transparent 36%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .55fr);
+      gap: clamp(28px, 6vw, 82px);
+      align-items: end;
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .kicker {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 940px;
+      margin: 22px 0 24px;
+      font-size: clamp(58px, 9vw, 132px);
+      line-height: .82;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .serif {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      text-transform: none;
+    }
+
+    .lead {
+      max-width: 680px;
+      color: rgba(242,233,216,.82);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid rgba(242,233,216,.18);
+      background: rgba(242,233,216,.08);
+      backdrop-filter: blur(16px);
+      transition: transform .28s ease, background .28s ease, box-shadow .28s ease;
+    }
+
+    .button.primary {
+      color: #160802;
+      background: var(--orange);
+      box-shadow: 0 22px 58px rgba(243,106,33,.28);
+    }
+
+    .button:hover { transform: translateY(-3px); background: rgba(242,233,216,.16); }
+    .button.primary:hover { background: #ff7a31; }
+
+    .command-panel {
+      border: 1px solid rgba(242,233,216,.18);
+      background: rgba(9,8,7,.55);
+      backdrop-filter: blur(24px);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.36);
+      transform-style: preserve-3d;
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(242,233,216,.12);
+      color: rgba(242,233,216,.72);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .route-card {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(242,233,216,.12), rgba(242,233,216,.035));
+      border: 1px solid rgba(242,233,216,.12);
+    }
+
+    .metric {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(242,233,216,.10);
+      color: rgba(242,233,216,.72);
+    }
+
+    .metric strong { color: var(--cream); }
+    .metric:last-child { border-bottom: 0; }
+
+    .scan {
+      height: 86px;
+      margin: 18px 0 4px;
+      border-radius: 15px;
+      background:
+        linear-gradient(90deg, transparent, rgba(243,106,33,.8), transparent),
+        repeating-linear-gradient(90deg, rgba(242,233,216,.16) 0 2px, transparent 2px 14px);
+      background-size: 42% 100%, auto;
+      animation: scan 2.8s ease-in-out infinite;
+      opacity: .9;
+    }
+
+    @keyframes scan {
+      0%, 100% { background-position: -55% 0, 0 0; }
+      50% { background-position: 155% 0, 0 0; }
+    }
+
+    .marquee {
+      display: flex;
+      overflow: hidden;
+      border-block: 1px solid rgba(242,233,216,.14);
+      background: var(--carbon);
+      color: var(--cream);
+    }
+
+    .marquee-track {
+      display: flex;
+      min-width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee span {
+      padding: 20px 26px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(242,233,216,.72);
+    }
+
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    section {
+      position: relative;
+      padding: clamp(72px, 10vw, 132px) clamp(22px, 6vw, 82px);
+    }
+
+    .section-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .dark { background: var(--black); color: var(--cream); }
+    .light { background: var(--paper); color: var(--ink); }
+
+    .light .kicker { color: #c6531c; }
+    .light .section-copy, .light p { color: rgba(29,36,48,.72); }
+
+    h2 {
+      max-width: 860px;
+      margin: 16px 0 22px;
+      font-size: clamp(38px, 6vw, 82px);
+      line-height: .92;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      max-width: 680px;
+      color: rgba(242,233,216,.76);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .feature {
+      min-height: 240px;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(242,233,216,.14);
+      background: linear-gradient(145deg, rgba(242,233,216,.11), rgba(242,233,216,.035));
+      backdrop-filter: blur(18px);
+      transition: transform .36s ease, border-color .36s ease, background .36s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-8px);
+      border-color: rgba(243,106,33,.52);
+      background: linear-gradient(145deg, rgba(243,106,33,.22), rgba(242,233,216,.05));
+    }
+
+    .feature .num {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      margin-bottom: 54px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .feature p {
+      color: rgba(242,233,216,.72);
+      line-height: 1.55;
+    }
+
+    .visual-split {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(28px, 5vw, 70px);
+      align-items: center;
+    }
+
+    .image-stage {
+      position: relative;
+      min-height: 640px;
+    }
+
+    .floating-photo {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 7px solid #fffaf0;
+      box-shadow: 0 28px 80px rgba(0,0,0,.22);
+      transform: translateY(var(--float, 0));
+    }
+
+    .floating-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-a { width: 58%; height: 54%; left: 0; top: 4%; transform: rotate(-4deg); }
+    .photo-b { width: 54%; height: 58%; right: 0; top: 21%; transform: rotate(4deg); }
+    .photo-c { width: 42%; height: 32%; left: 28%; bottom: 0; transform: rotate(-1deg); }
+
+    .seo-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .seo-item {
+      padding: 26px;
+      border-radius: 24px;
+      background: #ffffff;
+      color: var(--ink);
+      box-shadow: 0 20px 60px rgba(29,36,48,.08);
+      border: 1px solid rgba(29,36,48,.08);
+    }
+
+    .seo-item h3 { margin-bottom: 12px; }
+    .seo-item p { margin-bottom: 0; }
+
+    .final {
+      min-height: 84vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(9,8,7,.1), rgba(9,8,7,.84)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .final h2 {
+      margin-inline: auto;
+      max-width: 980px;
+      font-size: clamp(48px, 8vw, 116px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .nav { border-radius: 24px; align-items: flex-start; }
+      .nav-links { display: none; }
+      .hero-grid, .visual-split { grid-template-columns: 1fr; }
+      .feature-grid, .seo-list { grid-template-columns: 1fr 1fr; }
+      .command-panel { max-width: 520px; }
+      .image-stage { min-height: 520px; }
+    }
+
+    @media (max-width: 620px) {
+      .hero { padding-top: 104px; }
+      .feature-grid, .seo-list { grid-template-columns: 1fr; }
+      .image-stage { min-height: 440px; }
+      .photo-a { width: 70%; height: 48%; }
+      .photo-b { width: 64%; height: 50%; top: 24%; }
+      .photo-c { width: 58%; height: 28%; left: 18%; }
+      .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <p>Ouverture du projet V-lo... <a href="./bikepacking_premium_art_direction_EN.html">Clique ici si la page ne s'ouvre pas</a>.</p>
+  <nav class="nav" aria-label="Navigation principale">
+    <a class="brand" href="#accueil" aria-label="Accueil V-lo"><span class="brand-mark">V</span> V-lo</a>
+    <div class="nav-links">
+      <a href="#experience">Expérience</a>
+      <a href="#equipement">Équipement</a>
+      <a href="#seo">Guide</a>
+      <a href="bikepacking_premium_art_direction_EN.html">Presentation</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" id="accueil">
+      <div class="hero-media" data-parallax="0.18">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82" alt="Cycliste en bikepacking sur une route de montagne">
+      </div>
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="kicker">Bikepacking premium / Vélo aventure</div>
+          <h1>Pars plus loin.<br><span class="serif">Roule</span><br>plus libre.</h1>
+          <p class="lead">V-lo transforme l'univers du voyage à vélo en expérience immersive : équipement, itinéraire, autonomie et style visuel digne des grandes marques outdoor.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#experience">Explorer l'experience</a>
+            <a class="button" href="bikepacking_premium_art_direction_EN.html">Voir la presentation complete</a>
+          </div>
+        </div>
+
+        <aside class="command-panel reveal" aria-label="Tableau de preparation bikepacking">
+          <div class="panel-top"><span>Mode expédition</span><span>Live</span></div>
+          <div class="route-card">
+            <div class="metric"><span>Distance cible</span><strong>148 km</strong></div>
+            <div class="metric"><span>Dénivelé</span><strong>2 430 m</strong></div>
+            <div class="metric"><span>Autonomie</span><strong>72 h</strong></div>
+            <div class="scan" aria-hidden="true"></div>
+            <p>Préparation intelligente : moins d'objets inutiles, plus de précision, plus de liberté sur la route.</p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Bikepacking</span><span>Gravel</span><span>Autonomie</span><span>Equipement</span><span>Route</span><span>Outdoor</span>
+        <span>Bikepacking</span><span>Gravel</span><span>Autonomie</span><span>Equipement</span><span>Route</span><span>Outdoor</span>
+      </div>
+    </div>
+
+    <section class="dark" id="experience">
+      <div class="section-inner">
+        <div class="kicker reveal">Experience V-lo</div>
+        <h2 class="reveal">Une interface qui donne envie de partir avant même de toucher le guidon.</h2>
+        <p class="section-copy reveal">L'ambition : mélanger la force visuelle d'un grand site produit, la clarté d'un guide bikepacking et la sensation cinéma d'un départ au lever du jour.</p>
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <div class="num">01</div>
+            <h3>Immersion</h3>
+            <p>Images plein écran, mouvement subtil, profondeur et lumière chaude pour installer un vrai univers.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="num">02</div>
+            <h3>Precision</h3>
+            <p>Une lecture claire des besoins : distance, autonomie, sacoches, météo et matériel essentiel.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="num">03</div>
+            <h3>Performance</h3>
+            <p>Une page statique rapide à charger, compatible Vercel, mobile et moteurs de recherche.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="num">04</div>
+            <h3>Identite</h3>
+            <p>Palette carbone, orange brûlé, bleu glacier et accents outdoor pour une marque reconnaissable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="equipement">
+      <div class="section-inner visual-split">
+        <div class="reveal">
+          <div class="kicker">Équipement & route</div>
+          <h2>Le vélo comme système. La route comme terrain de jeu.</h2>
+          <p class="section-copy">V-lo parle aux cyclistes qui veulent préparer leur prochaine sortie avec méthode : sacs, lunettes, textile, lumière, outils, eau, trace GPS et gestion de l'effort.</p>
+          <p class="section-copy">Chaque détail doit raconter l'autonomie : partir, réparer, s'orienter, dormir, repartir.</p>
+        </div>
+        <div class="image-stage" aria-label="Galerie bikepacking">
+          <figure class="floating-photo photo-a" data-float="0.12">
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=900&q=80" alt="Velo equipe pour une aventure bikepacking">
+          </figure>
+          <figure class="floating-photo photo-b" data-float="-0.10">
+            <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=900&q=80" alt="Cycliste sur route avec paysage naturel">
+          </figure>
+          <figure class="floating-photo photo-c" data-float="0.18">
+            <img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=900&q=80" alt="Detail de velo et d'equipement cycliste">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="seo">
+      <div class="section-inner">
+        <div class="kicker reveal">SEO en français</div>
+        <h2 class="reveal">Une page lisible par Google, mais écrite pour les vrais cyclistes.</h2>
+        <p class="section-copy reveal">Le contenu cible naturellement les recherches autour du bikepacking, du voyage à vélo, de l'équipement vélo et de l'aventure gravel.</p>
+        <div class="seo-list">
+          <article class="seo-item reveal">
+            <h3>Bikepacking</h3>
+            <p>Préparer une sortie longue, choisir le bon matériel et garder une expérience fluide sur la route.</p>
+          </article>
+          <article class="seo-item reveal">
+            <h3>Voyage à vélo</h3>
+            <p>Construire un univers de marque autour de la liberté, de l'autonomie et du plaisir de rouler loin.</p>
+          </article>
+          <article class="seo-item reveal">
+            <h3>Équipement vélo</h3>
+            <p>Mettre en avant les accessoires utiles : sacoches, textile technique, lunettes, outils et navigation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="section-inner reveal">
+        <div class="kicker">Manifeste</div>
+        <h2>La route n'est pas le decor. C'est l'identité.</h2>
+        <a class="button primary" href="#accueil">Remonter</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("in");
+      });
+    }, { threshold: 0.16 });
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    window.addEventListener("pointermove", (event) => {
+      root.style.setProperty("--mx", `${event.clientX}px`);
+      root.style.setProperty("--my", `${event.clientY}px`);
+    });
+
+    const parallaxItems = document.querySelectorAll("[data-parallax], [data-float]");
+    const moveWithScroll = () => {
+      const scrollY = window.scrollY;
+      parallaxItems.forEach((item) => {
+        const speed = Number(item.dataset.parallax || item.dataset.float || 0);
+        item.style.setProperty("--float", `${scrollY * speed * 0.08}px`);
+        if (item.dataset.parallax) item.style.transform = `translateY(${scrollY * speed}px) scale(1.06)`;
+      });
+    };
+
+    window.addEventListener("scroll", moveWithScroll, { passive: true });
+    moveWithScroll();
+
+    document.querySelectorAll(".command-panel, .feature").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 7}deg) translateY(-4px)`;
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.transform = "";
+      });
+    });
+  </script>
 </body>
 </html>
